@@ -1,0 +1,69 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+
+export default class WeatherTable extends React.Component {
+
+    render() {
+        return (
+            <table className="weather-table">
+                <tbody>
+                <tr>
+                    <td>Wind</td>
+                    <td>{this.props.windSpeed} m/s</td>
+                </tr>
+                <tr>
+                    <td>Cloudiness</td>
+                    <td>{this.props.clouds}</td>
+                </tr>
+                <tr>
+                    <td>Pressure</td>
+                    <td>{this.props.pressure} hpa</td>
+                </tr>
+                <tr>
+                    <td>Humidity</td>
+                    <td>{this.props.humidity} %</td>
+                </tr>
+                <tr>
+                    <td>Sunrise</td>
+                    <td>{this.props.sunrise}</td>
+                </tr>
+                <tr>
+                    <td>Sunset</td>
+                    <td>{this.props.sunset}</td>
+                </tr>
+                <tr>
+                    <td>Geo coords</td>
+                    <td>[{this.props.coords.lon}, {this.props.coords.lat}]</td>
+                </tr>
+                </tbody>
+            </table>
+        );
+    }
+}
+
+
+WeatherTable.propTypes = {
+    windSpeed: PropTypes.number.isRequired,
+    clouds: PropTypes.string.isRequired,
+    pressure: PropTypes.number.isRequired,
+    humidity: PropTypes.number.isRequired,
+    sunrise: PropTypes.number.isRequired,
+    sunset: PropTypes.number.isRequired,
+    coords: PropTypes.shape({
+        lon: PropTypes.number,
+        lat: PropTypes.number
+    })
+};
+
+WeatherTable.defaultProps = {
+    windSpeed: 5,
+    clouds: "all",
+    pressure: 1024,
+    humidity: 98,
+    sunrise: 1515,
+    sunset: 1545,
+    coords: {
+        lon: 44.2,
+        lat: -1212
+    }
+};

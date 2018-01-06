@@ -1,0 +1,9 @@
+h1, h2, h3, h4 {
+    font-family: Oswald, sans-serif !important;
+}
+
+.widget-title {
+    text-align: center;
+    color: #d26c22;
+    margin-bottom: 15px;
+}
