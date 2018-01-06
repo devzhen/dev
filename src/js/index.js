@@ -6,7 +6,7 @@ import 'bootstrap/dist/js/bootstrap.min';
 
 import ReactDOM from 'react-dom';
 import React from "react";
-import App from "./components/App";
+import App from "./components/WeatherWidget";
 
 ReactDOM.render(<App/>, document.getElementById('component'));
 

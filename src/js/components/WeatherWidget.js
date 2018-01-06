@@ -4,7 +4,7 @@ import SearchCity from './SearchCity';
 import CityWeather from './CityWeather';
 import CityForecast from './CityForecast';
 
-export default class App extends React.Component {
+export default class WeatherWidget extends React.Component {
 
     render() {
         return (
@@ -17,13 +17,12 @@ export default class App extends React.Component {
                     <CityWeather/>
                     <CityForecast/>
                 </div>
-
             </div>
         );
     }
 }
 
 
-App.propTypes = {};
+WeatherWidget.propTypes = {};
 
-App.defaultProps = {};
+WeatherWidget.defaultProps = {};
