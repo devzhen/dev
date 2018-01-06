@@ -1,10 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {connect} from "react-redux";
+import {getWeather} from "../redux/action_creaters";
 import SearchCity from "./SearchCity";
 import CityWeather from "./CityWeather";
 import CityForecast from "./CityForecast";
 
-export default class App extends React.Component {
+class App extends React.Component {
+
+    constructor(props) {
+        super(props);
+
+        this.props.getWeather();
+    }
 
     render() {
         return (
@@ -26,3 +34,7 @@ export default class App extends React.Component {
 App.propTypes = {};
 
 App.defaultProps = {};
+
+export default connect((state) => {
+    return {weatherObj: state.weatherObj}
+}, {getWeather})(App);
