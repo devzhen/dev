@@ -1,7 +1,7 @@
 import {combineReducers} from "redux";
 
-import {test} from "./app-state-reducer";
+import {getWeather} from "./weather-reducer";
 
 export default combineReducers({
-    test: test
+    weatherObj: getWeather
 });

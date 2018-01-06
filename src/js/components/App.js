@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import SearchCity from './SearchCity';
-import CityWeather from './CityWeather';
-import CityForecast from './CityForecast';
+import SearchCity from "./SearchCity";
+import CityWeather from "./CityWeather";
+import CityForecast from "./CityForecast";
 
-export default class WeatherWidget extends React.Component {
+export default class App extends React.Component {
 
     render() {
         return (
@@ -23,6 +23,6 @@ export default class WeatherWidget extends React.Component {
 }
 
 
-WeatherWidget.propTypes = {};
+App.propTypes = {};
 
-WeatherWidget.defaultProps = {};
+App.defaultProps = {};
