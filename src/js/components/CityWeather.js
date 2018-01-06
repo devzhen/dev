@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import WeatherTable from "./WeatherTable";
+import CityWeatherTable from "./CityWeatherTable";
 
 
 export default class CityWeather extends React.Component {
@@ -15,7 +15,7 @@ export default class CityWeather extends React.Component {
                     {this.props.temperature} °C
                 </h3>
 
-                <WeatherTable/>
+                <CityWeatherTable/>
 
             </div>
         );

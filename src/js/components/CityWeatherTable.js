@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export default class WeatherTable extends React.Component {
+export default class CityWeatherTable extends React.Component {
 
     render() {
         return (
@@ -42,7 +42,7 @@ export default class WeatherTable extends React.Component {
 }
 
 
-WeatherTable.propTypes = {
+CityWeatherTable.propTypes = {
     windSpeed: PropTypes.number.isRequired,
     windDirection: PropTypes.string.isRequired,
     clouds: PropTypes.string.isRequired,
@@ -56,7 +56,7 @@ WeatherTable.propTypes = {
     })
 };
 
-WeatherTable.defaultProps = {
+CityWeatherTable.defaultProps = {
     windSpeed: 5,
     windDirection: "southwest",
     clouds: "all some text in this text",
