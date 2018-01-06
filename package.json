@@ -1,0 +1,49 @@
+{
+  "name": "weather-app-react-redux",
+  "version": "1.0.0",
+  "description": "weather spa",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/devzhen/dev.git"
+  },
+  "keywords": [
+    "weather",
+    "spa"
+  ],
+  "author": "devzhen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/devzhen/dev/issues"
+  },
+  "homepage": "https://github.com/devzhen/dev#readme",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "css-loader": "^0.28.7",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "file-loader": "^1.1.6",
+    "optimize-css-assets-webpack-plugin": "^3.2.0",
+    "prop-types": "^15.6.0",
+    "style-loader": "^0.19.0",
+    "uglifyjs-webpack-plugin": "^1.1.5",
+    "url-loader": "^0.6.2",
+    "webpack": "^3.10.0",
+    "webpack-dev-server": "^2.9.7"
+  },
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "jquery": "^3.2.1",
+    "popper.js": "^1.12.9",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-redux": "^5.0.6",
+    "redux": "^3.7.2"
+  }
+}

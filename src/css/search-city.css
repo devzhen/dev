@@ -1,0 +1,14 @@
+.search-city {
+    margin-top: 20px;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.search-city input {
+    border-color: #c1631f;
+}
+
+.search-city button {
+    background-color: #d26c22;
+    border-color: #c1631f;
+}
