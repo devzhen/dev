@@ -4,7 +4,7 @@ import SearchCity from './SearchCity';
 import CityWeather from './CityWeather';
 import CityForecast from './CityForecast';
 
-export default class Root extends React.Component {
+export default class App extends React.Component {
 
     render() {
         return (
@@ -24,6 +24,6 @@ export default class Root extends React.Component {
 }
 
 
-Root.propTypes = {};
+App.propTypes = {};
 
-Root.defaultProps = {};
+App.defaultProps = {};

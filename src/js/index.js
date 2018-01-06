@@ -6,9 +6,9 @@ import 'bootstrap/dist/js/bootstrap.min';
 
 import ReactDOM from 'react-dom';
 import React from "react";
-import Root from "./components/Root";
+import App from "./components/App";
 
-ReactDOM.render(<Root/>, document.getElementById('component'));
+ReactDOM.render(<App/>, document.getElementById('component'));
 
 
 // fetch('http://api.openweathermap.org/data/2.5/weather?id=709930&APPID=650a122361b5457a1e5493f257f434c1')

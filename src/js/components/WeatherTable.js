@@ -9,7 +9,7 @@ export default class WeatherTable extends React.Component {
                 <tbody>
                 <tr>
                     <td>Wind</td>
-                    <td>{this.props.windSpeed} m/s</td>
+                    <td>{this.props.windSpeed} m/s, {this.props.windDirection}</td>
                 </tr>
                 <tr>
                     <td>Cloudiness</td>
@@ -44,6 +44,7 @@ export default class WeatherTable extends React.Component {
 
 WeatherTable.propTypes = {
     windSpeed: PropTypes.number.isRequired,
+    windDirection: PropTypes.string.isRequired,
     clouds: PropTypes.string.isRequired,
     pressure: PropTypes.number.isRequired,
     humidity: PropTypes.number.isRequired,
@@ -57,7 +58,8 @@ WeatherTable.propTypes = {
 
 WeatherTable.defaultProps = {
     windSpeed: 5,
-    clouds: "all",
+    windDirection: "southwest",
+    clouds: "all some text in this text",
     pressure: 1024,
     humidity: 98,
     sunrise: 1515,
