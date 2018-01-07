@@ -5,6 +5,7 @@ import {getWeather} from "../redux/action_creaters";
 import SearchCity from "./SearchCity";
 import CityWeather from "./CityWeather";
 import CityForecast from "./CityForecast";
+import LoaderBall from "./LoaderBall";
 
 class App extends React.Component {
 
@@ -15,16 +16,33 @@ class App extends React.Component {
     }
 
     render() {
+
+        console.log(this.props.weatherObj);
+
         return (
             <div>
                 <div className="row search-city">
                     <SearchCity/>
                 </div>
                 <h3 className="widget-title">Current weather and forecasts in your city</h3>
-                <div className='row'>
-                    <CityWeather/>
-                    <CityForecast/>
-                </div>
+                {this.props.weatherObj ? this.getWeatherElements() : this.getLoaderBall()}
+            </div>
+        );
+    }
+
+    getWeatherElements() {
+        return (
+            <div className='row'>
+                <CityWeather/>
+                <CityForecast/>
+            </div>
+        );
+    }
+
+    getLoaderBall() {
+        return (
+            <div className="row" style={{display: "flex", justifyContent: "center"}}>
+                <LoaderBall/>
             </div>
         );
     }
