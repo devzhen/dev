@@ -1,4 +1,6 @@
-// fetch('http://api.openweathermap.org/data/2.5/weather?id=709930&APPID=650a122361b5457a1e5493f257f434c1')
+import WeatherObjectManager from "../../service/WeatherObjectManager";
+
+// fetch('http://api.openweathermap.org/data/2.5/weather?q=Kharkiv&APPID=650a122361b5457a1e5493f257f434c1')
 //     .then(function (response) {
 //
 //         if (response.status === 200) {
@@ -20,15 +22,14 @@ let weatherObj = {
         "lon": 34.98, "lat": 48.45
     }
     ,
-    "weather":
-        [
-            {
-                "id": 804,
-                "main": "Clouds",
-                "description": "overcast clouds",
-                "icon": "04n"
-            }
-        ],
+    "weather": [
+        {
+            "id": 804,
+            "main": "Clouds",
+            "description": "overcast clouds",
+            "icon": "04n"
+        }
+    ],
     "base": "stations",
     "main": {
         "temp": 277.15,
@@ -68,9 +69,10 @@ export default function (store) {
 
         return function (action) {
 
-            action.payload = {
-                weatherObj: weatherObj
-            };
+            console.log('getWeather middleware');
+
+            action.payload = Object.assign({}, action.payload, {weatherObj: new WeatherObjectManager(weatherObj)});
+
             next(action);
         }
     }
