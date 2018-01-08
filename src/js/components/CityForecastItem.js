@@ -12,8 +12,8 @@ export default class CityForecastItem extends React.Component {
                 </div>
                 <div className="col-lg-8 col-md-8 col-sm-8 col-xs-12">
                     <p className="city-forecast-item-temp">
-                        <span className="city-forecast-item-temp-day">{this.props.temperature.day}&deg;</span>
-                        <span className="city-forecast-item-temp-night">{this.props.temperature.night}&deg;</span>
+                        <span className="city-forecast-item-temp-day">max:&nbsp;{this.props.temperature.max}&deg;</span>
+                        <span className="city-forecast-item-temp-night">min:&nbsp;{this.props.temperature.min}&deg;</span>
                         <i>{this.props.weather.description}</i>
                     </p>
                     <p className="city-forecast-item-params">
@@ -31,8 +31,8 @@ export default class CityForecastItem extends React.Component {
 CityForecastItem.propTypes = {
     date: PropTypes.string.isRequired,
     temperature: PropTypes.shape({
-        day: PropTypes.number,
-        night: PropTypes.number
+        max: PropTypes.number,
+        min: PropTypes.number
     }),
     weather: PropTypes.shape({
         icon: PropTypes.string,
@@ -48,8 +48,8 @@ CityForecastItem.propTypes = {
 CityForecastItem.defaultProps = {
     date: "0.0.0 00:00",
     temperature: {
-        day: 0,
-        night: 0
+        max: 0,
+        min: 0
     },
     weather: {
         icon: "img/01n.png",
