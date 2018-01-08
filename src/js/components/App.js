@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from "react-redux";
 import {getWeather} from "../redux/action_creaters";
+import {getForecast} from "../redux/action_creaters";
 import SearchCity from "./SearchCity";
 import CityWeather from "./CityWeather";
 import CityWeatherTable from "./CityWeatherTable";
@@ -13,7 +14,11 @@ class App extends React.Component {
     constructor(props) {
         super(props);
 
+        /*Получить текущие погодные условия*/
         this.props.getWeather();
+
+        /*Получить прогноз на 5 дней*/
+        this.props.getForecast();
     }
 
     render() {
@@ -70,4 +75,4 @@ App.defaultProps = {};
 
 export default connect((state) => {
     return {weatherObj: state.weatherObj}
-}, {getWeather})(App);
+}, {getWeather, getForecast})(App);
