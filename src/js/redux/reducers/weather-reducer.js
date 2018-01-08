@@ -7,8 +7,6 @@ export function getWeather(obj = null, action) {
 
     if (type === GET_WEATHER) {
 
-        console.log(action.payload.weatherObj);
-
         return action.payload.weatherObj;
     }
 
