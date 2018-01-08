@@ -1,6 +1,6 @@
 import {GET_FORECAST} from "../../constants";
 
-export function getWeather(obj = null, action) {
+export function getForecast(obj = null, action) {
 
     let {type} = action;
 
