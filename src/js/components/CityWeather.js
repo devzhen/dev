@@ -9,7 +9,7 @@ export default class CityWeather extends React.Component {
         return (
             <div className="col-lg-4 col-md-4 col-sm-12 col-xs-12">
 
-                <h2>Weather in {this.props.cityName}, {this.props.countryCode}</h2>
+                <h3>Weather in {this.props.cityName}, {this.props.countryCode}</h3>
                 <h3>
                     <img src={"img/" + this.props.weatherIcon + ".png"} alt="Img"/>
                     {this.props.temperature} °C

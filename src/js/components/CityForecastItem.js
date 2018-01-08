@@ -10,13 +10,13 @@ export default class CityForecastItem extends React.Component {
                     {this.props.date}
                     <img src={this.props.weather.icon} alt="weather-icon"/>
                 </div>
-                <div className="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <div className="col-lg-8 col-md-8 col-sm-8 col-xs-12">
                     <p className="city-forecast-item-temp">
                         <span className="city-forecast-item-temp-day">{this.props.temperature.day}&deg;</span>
                         <span className="city-forecast-item-temp-night">{this.props.temperature.night}&deg;</span>
                         <i>{this.props.weather.description}</i>
                     </p>
-                    <p>
+                    <p className="city-forecast-item-params">
                         {this.props.wind.speed} m/s &nbsp;
                         Humidity: {this.props.humidity} %, &nbsp;
                         {this.props.pressure} hpa

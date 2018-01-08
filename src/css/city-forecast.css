@@ -1,3 +1,7 @@
+.city-forecast {
+    text-align: center;
+}
+
 .city-forecast-item {
     width: 100%;
     border: 1px solid #ddd;
@@ -33,4 +37,10 @@ span.city-forecast-item-temp-day {
 
 span.city-forecast-item-temp-night {
     background-color: #999;
+    margin-right: 10px;
+}
+
+p.city-forecast-item-params {
+    display: flex;
+    width: 100%;
 }
