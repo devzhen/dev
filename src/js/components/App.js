@@ -4,6 +4,7 @@ import {connect} from "react-redux";
 import {getWeather} from "../redux/action_creaters";
 import SearchCity from "./SearchCity";
 import CityWeather from "./CityWeather";
+import CityWeatherTable from "./CityWeatherTable";
 import CityForecast from "./CityForecast";
 import LoaderBall from "./LoaderBall";
 
@@ -29,9 +30,25 @@ class App extends React.Component {
     }
 
     getWeatherElements() {
+
+        let weatherObj = JSON.parse(this.props.weatherObj);
+
         return (
             <div className='row'>
-                <CityWeather/>
+
+                <CityWeather cityName={weatherObj.cityName} countryCode={weatherObj.countryCode}
+                             temperature={weatherObj.temperature} weatherIcon={weatherObj.weather.icon}>
+
+                    <CityWeatherTable windSpeed={weatherObj.wind.speed} windDirection={weatherObj.wind.direction}
+                                      clouds={weatherObj.weather.description} pressure={weatherObj.pressure}
+                                      humidity={weatherObj.humidity} sunrise={weatherObj.sunrise}
+                                      sunset={weatherObj.sunset}
+                                      coords={{lon: weatherObj.coords.longitude, lat: weatherObj.coords.latitude}}/>
+
+
+                </CityWeather>
+
+
                 <CityForecast/>
             </div>
         );

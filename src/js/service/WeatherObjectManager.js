@@ -56,10 +56,8 @@ export default class WeatherObjectManager {
 
         this.countryCode = weatherObj.sys.country;
 
-        let time = new Date(weatherObj.sys.sunrise);
-        this.sunrise = time.getHours() + ':' + time.getMinutes();
-        time = new Date(weatherObj.sys.sunset);
-        this.sunset = time.getHours() + ':' + time.getMinutes();
+        this.sunrise = this.convertDateToTime(weatherObj.sys.sunrise);
+        this.sunset = this.convertDateToTime(weatherObj.sys.sunset);
 
         this.coords.latitude = weatherObj.coord.lat;
         this.coords.longitude = weatherObj.coord.lon;
@@ -89,6 +87,22 @@ export default class WeatherObjectManager {
 
             this.wind.direction = "north-west";
         }
+    }
+
+
+    convertDateToTime(timestamp) {
+        let date = new Date(timestamp * 1000);
+        let hour = date.getHours();
+        if (hour < 10) {
+            hour = "0" + hour;
+        }
+
+        let min = date.getMinutes();
+        if (min < 10) {
+            min = "0" + min;
+        }
+
+        return hour + ":" + min;
     }
 
 

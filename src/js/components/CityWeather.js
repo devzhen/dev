@@ -15,7 +15,7 @@ export default class CityWeather extends React.Component {
                     {this.props.temperature} °C
                 </h3>
 
-                <CityWeatherTable/>
+                {this.props.children}
 
             </div>
         );

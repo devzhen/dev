@@ -48,8 +48,8 @@ CityWeatherTable.propTypes = {
     clouds: PropTypes.string.isRequired,
     pressure: PropTypes.number.isRequired,
     humidity: PropTypes.number.isRequired,
-    sunrise: PropTypes.number.isRequired,
-    sunset: PropTypes.number.isRequired,
+    sunrise: PropTypes.string.isRequired,
+    sunset: PropTypes.string.isRequired,
     coords: PropTypes.shape({
         lon: PropTypes.number,
         lat: PropTypes.number
@@ -62,8 +62,8 @@ CityWeatherTable.defaultProps = {
     clouds: "no data",
     pressure: 0,
     humidity: 0,
-    sunrise: 0,
-    sunset: 0,
+    sunrise: "0",
+    sunset: "0",
     coords: {
         lon: 0,
         lat: 0
