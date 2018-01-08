@@ -1,0 +1,36 @@
+.city-forecast-item {
+    width: 100%;
+    border: 1px solid #ddd;
+    background-color: #eee;
+}
+
+p.city-forecast-item-temp {
+    display: flex;
+    width: 100%;
+    margin-top: 5px;
+}
+
+span.city-forecast-item-temp-day, span.city-forecast-item-temp-night {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 51px;
+    padding: 3px;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    border-radius: .25em;
+    margin-right: 5px;
+}
+
+span.city-forecast-item-temp-day {
+    background-color: #f0ad4e;
+
+}
+
+span.city-forecast-item-temp-night {
+    background-color: #999;
+}

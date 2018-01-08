@@ -7,6 +7,7 @@ import SearchCity from "./SearchCity";
 import CityWeather from "./CityWeather";
 import CityWeatherTable from "./CityWeatherTable";
 import CityForecast from "./CityForecast";
+import CityForecastItem from "./CityForecastItem";
 import LoaderBall from "./LoaderBall";
 
 class App extends React.Component {
@@ -54,7 +55,13 @@ class App extends React.Component {
                 </CityWeather>
 
 
-                <CityForecast/>
+                <CityForecast>
+                    <CityForecastItem />
+                    <CityForecastItem />
+                    <CityForecastItem />
+                    <CityForecastItem />
+                    <CityForecastItem />
+                </CityForecast>
             </div>
         );
     }

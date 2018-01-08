@@ -6,7 +6,7 @@ import getForecast from "../middlewares/getForecast";
 import getCoordsFromGeoPositionAPI from "../middlewares/getCoordsFromGeoLocationAPI";
 import getCoordsFromLocalStorage from "../middlewares/getCoordsFromLocallStorage";
 
-const enhancer = applyMiddleware(getCoordsFromLocalStorage, getCoordsFromGeoPositionAPI, getWeather, getForecast, logger);
+const enhancer = applyMiddleware(getCoordsFromLocalStorage, getCoordsFromGeoPositionAPI, /*getWeather, getForecast,*/ logger);
 
 const store = createStore(reducer, {}, enhancer);
 
