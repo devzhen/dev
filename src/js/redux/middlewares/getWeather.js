@@ -69,8 +69,6 @@ export default function (store) {
 
         return function (action) {
 
-            console.log('getWeather middleware');
-
             action.payload = Object.assign({}, action.payload, {weatherObj: new WeatherObjectManager(weatherObj)});
 
             next(action);

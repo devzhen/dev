@@ -1,12 +1,18 @@
+/**
+ * Получить координаты ползователя с помощью GeoLocationAPI
+ */
 export default function (store) {
 
     return function (next) {
 
         return function (action) {
 
-            console.log('getGeoPosition middleware');
+            /*Если координаты были найдены в local storage*/
+            if (action.payload.userCoords) {
 
-            if ("geolocation" in navigator) {
+                next(action);
+
+            } else if ("geolocation" in navigator) {
 
                 let promise = new Promise((resolve, reject) => {
 
@@ -27,8 +33,12 @@ export default function (store) {
 
                 promise
                     .then((coords) => {
+
+                        /*Записать координаты в local storage*/
+                        window.localStorage.setItem('coords', JSON.stringify(coords));
+
                         action.payload = {
-                            userCoords : coords
+                            userCoords: coords
                         };
                         next(action);
                     })

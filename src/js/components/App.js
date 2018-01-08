@@ -17,8 +17,6 @@ class App extends React.Component {
 
     render() {
 
-        console.log(this.props.weatherObj);
-
         return (
             <div>
                 <div className="row search-city">
