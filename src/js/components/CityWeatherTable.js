@@ -57,15 +57,15 @@ CityWeatherTable.propTypes = {
 };
 
 CityWeatherTable.defaultProps = {
-    windSpeed: 5,
-    windDirection: "southwest",
-    clouds: "all some text in this text",
-    pressure: 1024,
-    humidity: 98,
-    sunrise: 1515,
-    sunset: 1545,
+    windSpeed: 0,
+    windDirection: "no data",
+    clouds: "no data",
+    pressure: 0,
+    humidity: 0,
+    sunrise: 0,
+    sunset: 0,
     coords: {
-        lon: 44.2,
-        lat: -1212
+        lon: 0,
+        lat: 0
     }
 };

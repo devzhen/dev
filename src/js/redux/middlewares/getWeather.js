@@ -69,7 +69,13 @@ export default function (store) {
 
         return function (action) {
 
-            action.payload = Object.assign({}, action.payload, {weatherObj: new WeatherObjectManager(weatherObj)});
+            action.payload = Object.assign(
+                {},
+                action.payload,
+                {
+                    weatherObj: JSON.stringify(new WeatherObjectManager(weatherObj))
+                }
+            );
 
             next(action);
         }

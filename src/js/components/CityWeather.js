@@ -31,8 +31,8 @@ CityWeather.propTypes = {
 };
 
 CityWeather.defaultProps = {
-    cityName: "Dnipro",
-    countryCode: "Uk",
+    cityName: "No name",
+    countryCode: "No country",
     weatherIcon: "01n",
-    temperature: 4
+    temperature: 0
 };
