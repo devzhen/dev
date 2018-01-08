@@ -90,4 +90,24 @@ export default class WeatherObjectManager {
             this.wind.direction = "north-west";
         }
     }
+
+
+    /**
+     * This method will invoke when JSON.stringify method will be called
+     * @returns {JSON}
+     */
+    toJSON() {
+        return {
+            cityName: this.cityName,
+            countryCode: this.countryCode,
+            sunrise: this.sunrise,
+            sunset: this.sunset,
+            coords: this.coords,
+            weather: this.weather,
+            temperature: this.temperature,
+            pressure: this.pressure,
+            humidity: this.humidity,
+            wind: this.wind
+        };
+    }
 }
