@@ -71,19 +71,36 @@ export default class WeatherObjectManager {
 
         this.wind.speed = weatherObj.wind.speed;
         let deg = weatherObj.wind.deg;
-        if (deg > 0 && deg <= 90) {
+
+        if (deg === 0) {
+
+            this.wind.direction = "north";
+
+        } else if (deg === 90) {
+
+            this.wind.direction = "east";
+
+        } else if (deg === 180) {
+
+            this.wind.direction = "south";
+
+        } else if (deg === 270) {
+
+            this.wind.direction = "west";
+
+        } else if (deg > 0 && deg < 90) {
 
             this.wind.direction = "north-east";
 
-        } else if (deg > 90 && deg <= 180) {
+        } else if (deg > 90 && deg < 180) {
 
             this.wind.direction = "south-east";
 
-        } else if (deg > 180 && deg <= 270) {
+        } else if (deg > 180 && deg < 270) {
 
             this.wind.direction = "south-west";
 
-        } else if (deg > 270 && deg <= 360) {
+        } else if (deg > 270 && deg < 360) {
 
             this.wind.direction = "north-west";
         }
