@@ -1,31 +1,87 @@
 export default class ForecastListManager {
 
-    constructor(forecastObj) {
+    constructor(forecastJson) {
 
         /*Получить все прогнозы состоянием на 14:00*/
-        this.forecasts = this.getForecastsAt_14_OClock(forecastObj);
+        let sortedForecasts = this.sortForecastJsonByDate(forecastJson);
 
+        this.forecasts = this.createCityForecastObject(sortedForecasts);
+    }
+
+    /**
+     * Отсортировать прогнозы по дням
+     * @param forecastJson {JSON}
+     * @returns {Array}
+     */
+    sortForecastJsonByDate(forecastJson) {
+
+        let sortedForecast = [];
+        let dayForecast = [];
+        let dayNumber = null;
+
+        for (let i = 0; i < forecastJson.list.length; i++) {
+
+            let day = new Date(forecastJson.list[i].dt * 1000).getDay();
+
+            if (dayNumber === null) {
+
+                dayForecast.push(forecastJson.list[i]);
+
+
+            } else if (dayNumber === day) {
+
+                dayForecast.push(forecastJson.list[i]);
+
+            } else {
+
+                sortedForecast.push(dayForecast);
+                dayForecast = [];
+                dayForecast.push(forecastJson.list[i]);
+            }
+
+            if (i === forecastJson.list.length - 1) {
+                sortedForecast.push(dayForecast);
+            }
+
+            dayNumber = day;
+        }
+
+        return sortedForecast;
     }
 
 
     /**
-     * Получить все прогнозы состоянием на 14:00
-     * @param forecastObj {JSON}
+     * Создать массив объектов погоды для передачи в React компонент
+     * @param sortedForecasts {JSON}
      * @returns {Array}
      */
-    getForecastsAt_14_OClock(forecastObj) {
+    createCityForecastObject(sortedForecasts) {
 
         let forecasts = [];
+        let dailyForecast = {
+            date: null,
+            forecasts: []
+        };
 
-        for (let i = 0; i < forecastObj.list.length; i++) {
+        for (let i = 0; i < sortedForecasts.length; i++) {
 
-            let date = new Date(forecastObj.list[i].dt * 1000);
-            if (date.getHours() === 14) {
+            for (let j = 0; j < sortedForecasts[i].length; j++) {
 
+                let hourlyForecast = this.createCityForecastHourObject(sortedForecasts[i][j]);
 
-                let weather = this.createForecastWeatherObject(forecastObj.list[i]);
-                forecasts.push(weather);
+                dailyForecast.forecasts.push(hourlyForecast);
+
+                if (!dailyForecast.date) {
+                    dailyForecast.date = this.convertUTCDateToRequiredFormat(sortedForecasts[i][j].dt);
+                }
+
             }
+
+            forecasts.push(Object.assign({}, dailyForecast));
+            dailyForecast = {
+                date: null,
+                forecasts: []
+            };
 
         }
 
@@ -38,22 +94,19 @@ export default class ForecastListManager {
      * @param forecast {JSON}
      * @returns {Object}
      */
-    createForecastWeatherObject(forecast) {
+    createCityForecastHourObject(forecast) {
 
         return {
-            date: this.convertUTCDateToRequiredFormat(forecast.dt),
+            time: this.convertUTCDateToTime(forecast.dt),
             weather: {
                 icon: 'img/' + forecast.weather[0].icon + '.png',
                 description: forecast.weather[0].description
             },
-            temperature: {
-                max: forecast.main.temp_max,
-                min: forecast.main.temp_min
-            },
+            temperature: forecast.main.temp,
             wind: {
                 speed: forecast.wind.speed
             },
-            humidity: forecast.main.humidity,
+            clouds: forecast.clouds.all,
             pressure: forecast.main.pressure
         };
     }
@@ -136,7 +189,29 @@ export default class ForecastListManager {
                 break;
         }
 
-        return `${day} ${d.getDate()} ${month}`;
+        return `${day} ${month} ${d.getDate()} ${d.getFullYear()}`;
+    }
+
+
+    /**
+     * Конвертировать UTC дату в строку времени
+     * @param date {number}
+     * @returns {string}
+     */
+    convertUTCDateToTime(date) {
+        let d = new Date(date * 1000);
+
+        let hour = d.getHours();
+        if (hour < 10) {
+            hour = "0" + hour;
+        }
+
+        let min = d.getMinutes();
+        if (min < 10) {
+            min = "0" + min
+        }
+
+        return `${hour}:${min}`;
     }
 
 
@@ -147,4 +222,4 @@ export default class ForecastListManager {
     toJSON() {
         return this.forecasts;
     }
-}
+};

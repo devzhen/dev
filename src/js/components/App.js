@@ -1,15 +1,12 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import {connect} from "react-redux";
-import {getWeather} from "../redux/action_creaters";
-import {getForecast} from "../redux/action_creaters";
+import {getForecast, getWeather} from "../redux/action_creaters";
 import SearchCity from "./SearchCity";
 import CityWeather from "./CityWeather";
 import CityWeatherTable from "./CityWeatherTable";
 import CityForecast from "./CityForecast";
-import CityForecastDayItem from "./CityForecastDayItem";
 import LoaderBall from "./LoaderBall";
-import {FIRST} from "../constants";
+import CityDailyForecast from "./CityDailyForecast";
 
 class App extends React.Component {
 
@@ -39,7 +36,6 @@ class App extends React.Component {
     getWeatherElements() {
 
         let weatherObj = JSON.parse(this.props.weatherObj);
-        let forecastObj = JSON.parse(this.props.forecastObj);
 
         return (
             <div className='row'>
@@ -59,11 +55,7 @@ class App extends React.Component {
 
 
                 <CityForecast>
-                    <CityForecastDayItem />
-                    <CityForecastDayItem />
-                    <CityForecastDayItem />
-                    <CityForecastDayItem />
-                    <CityForecastDayItem />
+                    {this.createDailyForecastObjects()}
                 </CityForecast>
             </div>
         );
@@ -75,6 +67,23 @@ class App extends React.Component {
                 <LoaderBall/>
             </div>
         );
+    }
+
+    createDailyForecastObjects() {
+
+        let objects = [];
+
+        let forecasts = JSON.parse(this.props.forecastObj);
+
+        for (let i = 0; i < forecasts.length; i++) {
+
+            objects.push(
+                <CityDailyForecast key={i} date={forecasts[i].date} forecast={forecasts[i].forecasts}/>
+            );
+
+        }
+
+        return objects;
     }
 }
 
