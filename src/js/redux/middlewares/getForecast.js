@@ -1,4 +1,5 @@
 import {GET_FORECAST} from "../../constants";
+import FiveDayForecastListManager from "../../service/FiveDayForecastListManager";
 
 export default function (store) {
 
@@ -10,7 +11,7 @@ export default function (store) {
 
                 let {latitude, longitude} = action.payload.userCoords;
 
-                let url = `http://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&APPID=650a122361b5457a1e5493f257f434c1`;
+                let url = `http://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&units=metric&APPID=650a122361b5457a1e5493f257f434c1`;
 
                 fetch(url)
                     .then(function (response) {
@@ -23,7 +24,7 @@ export default function (store) {
                             {},
                             action.payload,
                             {
-                                forecastObj: JSON.stringify({test: "test"})
+                                forecastObj: JSON.stringify(new FiveDayForecastListManager(json))
                             }
                         );
 

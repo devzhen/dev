@@ -6,7 +6,6 @@ export function getForecast(obj = null, action) {
 
     if (type === GET_FORECAST) {
         return action.payload.forecastObj;
-        // return JSON.stringify({test:"test"});
     }
 
     return obj;

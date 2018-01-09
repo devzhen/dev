@@ -65,7 +65,7 @@ export default class WeatherObjectManager {
         this.weather.description = weatherObj.weather[0].description;
         this.weather.icon = weatherObj.weather[0].icon;
 
-        this.temperature = weatherObj.main.temp - 273.15;
+        this.temperature = weatherObj.main.temp;
         this.pressure = weatherObj.main.pressure;
         this.humidity = weatherObj.main.humidity;
 
