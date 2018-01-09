@@ -33,7 +33,7 @@ export default class CityWeatherTable extends React.Component {
                 </tr>
                 <tr>
                     <td>Geo coords</td>
-                    <td>[{this.props.coords.lon}, {this.props.coords.lat}]</td>
+                    <td className="weather-table-coords">[{this.props.coords.lon}, {this.props.coords.lat}]</td>
                 </tr>
                 </tbody>
             </table>
