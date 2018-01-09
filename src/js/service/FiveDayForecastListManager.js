@@ -102,7 +102,7 @@ export default class ForecastListManager {
                 icon: 'img/' + forecast.weather[0].icon + '.png',
                 description: forecast.weather[0].description
             },
-            temperature: forecast.main.temp,
+            temperature: parseFloat(forecast.main.temp.toFixed(1)),
             wind: {
                 speed: forecast.wind.speed
             },
