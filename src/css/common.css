@@ -1,3 +1,8 @@
+@font-face {
+    font-family: Oswald; /* Имя шрифта */
+    src: url(../../fonts/Oswald-Regular.ttf); /* Путь к файлу со шрифтом */
+}
+
 h1, h2, h3, h4 {
     font-family: Oswald, sans-serif !important;
 }

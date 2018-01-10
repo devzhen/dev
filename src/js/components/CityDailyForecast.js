@@ -9,7 +9,7 @@ export default class CityDailyForecast extends React.Component {
             <div className="row city-forecast-item">
 
                 <div className="col-xs-12 city-forecast-item-date">
-                    {this.props.date}
+                    <strong>{this.props.date}</strong>
                 </div>
 
                 {this.createCityForecastHourObjects()}
