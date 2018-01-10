@@ -2,10 +2,19 @@ export default class ForecastListManager {
 
     constructor(forecastJson) {
 
-        /*Получить все прогнозы состоянием на 14:00*/
-        let sortedForecasts = this.sortForecastJsonByDate(forecastJson);
+        /*If forecast was not found*/
+        if (forecastJson.cod === "404") {
 
-        this.forecasts = this.createCityForecastObject(sortedForecasts);
+            this.forecasts = {status: 404};
+
+        } else {
+
+            /*Отсортировать прогнозы по дням*/
+            let sortedForecasts = this.sortForecastJsonByDate(forecastJson);
+
+            this.forecasts = this.createCityForecastObject(sortedForecasts);
+        }
+
     }
 
     /**

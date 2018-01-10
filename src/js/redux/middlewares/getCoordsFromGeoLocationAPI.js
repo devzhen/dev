@@ -37,9 +37,14 @@ export default function (store) {
                         /*Записать координаты в local storage*/
                         window.localStorage.setItem('coords', JSON.stringify(coords));
 
-                        action.payload = {
-                            userCoords: coords
-                        };
+                        action.payload = Object.assign(
+                            {},
+                            action.payload,
+                            {
+                                userCoords: coords
+                            }
+                        );
+
                         next(action);
                     })
                     .catch((error) => {

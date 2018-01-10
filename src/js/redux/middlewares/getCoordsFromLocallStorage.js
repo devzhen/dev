@@ -7,8 +7,6 @@ export default function (store) {
 
         return function (action) {
 
-            action.payload = {};
-
             // If the local storage contains coords
             let {coords} = window.localStorage;
             if(coords) {

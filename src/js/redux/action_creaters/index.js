@@ -1,13 +1,20 @@
-import {GET_WEATHER, GET_FORECAST} from "../../constants";
+import {GET_FORECAST, GET_WEATHER} from "../../constants";
 
-export function getWeather() {
+export function getWeather(cityName) {
+
     return {
-        type: GET_WEATHER
+        type: GET_WEATHER,
+        payload: {
+            cityName: cityName
+        }
     }
 }
 
-export function getForecast() {
+export function getForecast(cityName) {
     return {
-        type: GET_FORECAST
-}
+        type: GET_FORECAST,
+        payload: {
+            cityName: cityName
+        }
+    }
 }

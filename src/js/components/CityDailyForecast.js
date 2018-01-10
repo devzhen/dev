@@ -44,7 +44,7 @@ CityDailyForecast.propTypes = {
 
     date: PropTypes.string,
     forecast: PropTypes.arrayOf(PropTypes.shape({
-        date: PropTypes.string.isRequired,
+        date: PropTypes.string,
         weather: PropTypes.shape({
             description: PropTypes.string,
             icon: PropTypes.string

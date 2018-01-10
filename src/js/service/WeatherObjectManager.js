@@ -2,45 +2,28 @@ export default class WeatherObjectManager {
 
     constructor(weatherObj) {
 
-        // Название города
-        this.cityName = null;
-
-        // Код страны
-        this.countryCode = null;
-
-        // Время рассвета
-        this.sunrise = null;
-
-        // Время заката
-        this.sunset = null;
-
-        // Координаты
-        this.coords = {
-            latitude: null, // широта
-            longitude: null // долгота
+        this.weatherObj = {
+            status: null,
+            cityName: null,
+            countryCode: null,
+            sunrise: null,
+            sunset: null,
+            coords: {
+                latitude: null,
+                longitude: null
+            },
+            weather: {
+                description: null,
+                icon: null
+            },
+            temperature: null,
+            pressure: null,
+            humidity: null,
+            wind: {
+                speed: null,
+                direction: null
+            }
         };
-
-        // Погода
-        this.weather = {
-            description: null,   // описание погоды
-            icon: null           // иконка погоды
-        };
-
-        // Температура воздуха
-        this.temperature = null;
-
-        // Давление
-        this.pressure = null;
-
-        // Влажность
-        this.humidity = null;
-
-        // Ветер
-        this.wind = {
-            speed: null,        // скорость
-            direction: null     // напрвление
-        };
-
 
         this.parseWeatherObj(weatherObj);
     }
@@ -52,57 +35,66 @@ export default class WeatherObjectManager {
      */
     parseWeatherObj(weatherObj) {
 
-        this.cityName = weatherObj.name;
+        /*Если погода для указанного города не найдена*/
+        if (weatherObj.cod === "404") {
+            this.weatherObj = {
+                status: 404
+            };
+            return;
+        }
 
-        this.countryCode = weatherObj.sys.country;
+        this.weatherObj.status = weatherObj.cod;
+        this.weatherObj.cityName = weatherObj.name;
 
-        this.sunrise = this.convertDateToTime(weatherObj.sys.sunrise);
-        this.sunset = this.convertDateToTime(weatherObj.sys.sunset);
+        this.weatherObj.countryCode = weatherObj.sys.country;
 
-        this.coords.latitude = weatherObj.coord.lat;
-        this.coords.longitude = weatherObj.coord.lon;
+        this.weatherObj.sunrise = this.convertDateToTime(weatherObj.sys.sunrise);
+        this.weatherObj.sunset = this.convertDateToTime(weatherObj.sys.sunset);
 
-        this.weather.description = weatherObj.weather[0].description;
-        this.weather.icon = weatherObj.weather[0].icon;
+        this.weatherObj.coords.latitude = weatherObj.coord.lat;
+        this.weatherObj.coords.longitude = weatherObj.coord.lon;
 
-        this.temperature = weatherObj.main.temp;
-        this.pressure = weatherObj.main.pressure;
-        this.humidity = weatherObj.main.humidity;
+        this.weatherObj.weather.description = weatherObj.weather[0].description;
+        this.weatherObj.weather.icon = weatherObj.weather[0].icon;
 
-        this.wind.speed = weatherObj.wind.speed;
+        this.weatherObj.temperature = weatherObj.main.temp;
+        this.weatherObj.pressure = weatherObj.main.pressure;
+        this.weatherObj.humidity = weatherObj.main.humidity;
+
+        this.weatherObj.wind.speed = weatherObj.wind.speed;
         let deg = weatherObj.wind.deg;
 
         if (deg === 0) {
 
-            this.wind.direction = "north";
+            this.weatherObj.wind.direction = "north";
 
         } else if (deg === 90) {
 
-            this.wind.direction = "east";
+            this.weatherObj.wind.direction = "east";
 
         } else if (deg === 180) {
 
-            this.wind.direction = "south";
+            this.weatherObj.wind.direction = "south";
 
         } else if (deg === 270) {
 
-            this.wind.direction = "west";
+            this.weatherObj.wind.direction = "west";
 
         } else if (deg > 0 && deg < 90) {
 
-            this.wind.direction = "north-east";
+            this.weatherObj.wind.direction = "north-east";
 
         } else if (deg > 90 && deg < 180) {
 
-            this.wind.direction = "south-east";
+            this.weatherObj.wind.direction = "south-east";
 
         } else if (deg > 180 && deg < 270) {
 
-            this.wind.direction = "south-west";
+            this.weatherObj.wind.direction = "south-west";
 
         } else if (deg > 270 && deg < 360) {
 
-            this.wind.direction = "north-west";
+            this.weatherObj.wind.direction = "north-west";
         }
     }
 
@@ -125,20 +117,9 @@ export default class WeatherObjectManager {
 
     /**
      * This method will invoke when JSON.stringify method will be called
-     * @returns {JSON}
+     * @returns {Object}
      */
     toJSON() {
-        return {
-            cityName: this.cityName,
-            countryCode: this.countryCode,
-            sunrise: this.sunrise,
-            sunset: this.sunset,
-            coords: this.coords,
-            weather: this.weather,
-            temperature: this.temperature,
-            pressure: this.pressure,
-            humidity: this.humidity,
-            wind: this.wind
-        };
+        return this.weatherObj;
     }
 }

@@ -9,9 +9,21 @@ export default function (store) {
 
             if (action.type === GET_FORECAST) {
 
-                let {latitude, longitude} = action.payload.userCoords;
+                let url = `http://api.openweathermap.org/data/2.5/forecast?APPID=650a122361b5457a1e5493f257f434c1&units=metric`;
 
-                let url = `http://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&units=metric&APPID=650a122361b5457a1e5493f257f434c1`;
+                /*Если поиск погоды по географическим координатам*/
+                if (action.payload.cityName === null) {
+
+                    let {latitude, longitude} = action.payload.userCoords;
+
+                    url += `&lat=${latitude}&lon=${longitude}`;
+
+                } else {
+
+                    let {cityName} = action.payload;
+
+                    url += `&q=${cityName}`;
+                }
 
                 fetch(url)
                     .then(function (response) {

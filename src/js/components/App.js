@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {connect} from "react-redux";
 import {getForecast, getWeather} from "../redux/action_creaters";
 import SearchCity from "./SearchCity";
@@ -14,10 +15,14 @@ class App extends React.Component {
         super(props);
 
         /*Получить текущие погодные условия*/
-        this.props.getWeather();
+        this.props.getWeather(null);
 
         /*Получить прогноз на 5 дней*/
-        this.props.getForecast();
+        this.props.getForecast(null);
+
+        /*The function, that will be called when search city form will be submitted*/
+        this.submitFunc = this.searchCity.bind(this);
+
     }
 
     render() {
@@ -25,22 +30,33 @@ class App extends React.Component {
         return (
             <div>
                 <div className="row search-city">
-                    <SearchCity/>
+                    <SearchCity submitFunc={this.submitFunc}/>
                 </div>
+
                 <h3 className="widget-title">Current weather and forecasts in your city</h3>
                 {this.props.weatherObj && this.props.forecastObj ? this.getWeatherElements() : this.getLoaderBall()}
             </div>
         );
     }
 
+
+    /**
+     * Create React components
+     */
     getWeatherElements() {
 
         let weatherObj = JSON.parse(this.props.weatherObj);
 
+        if (weatherObj.status === 404) {
+            return (
+                <div className="row" style={{textAlign: "center"}}>
+                    <h3>City not found</h3>
+                </div>
+            );
+        }
+
         return (
             <div className='row'>
-
-                {/*Текущая погода в городе*/}
                 <CityWeather cityName={weatherObj.cityName} countryCode={weatherObj.countryCode}
                              temperature={weatherObj.temperature} weatherIcon={weatherObj.weather.icon}>
 
@@ -61,6 +77,10 @@ class App extends React.Component {
         );
     }
 
+
+    /**
+     * Create React component <LoaderBall>
+     */
     getLoaderBall() {
         return (
             <div className="row" style={{display: "flex", justifyContent: "center"}}>
@@ -69,6 +89,10 @@ class App extends React.Component {
         );
     }
 
+
+    /**
+     * Create React components
+     */
     createDailyForecastObjects() {
 
         let objects = [];
@@ -85,12 +109,35 @@ class App extends React.Component {
 
         return objects;
     }
+
+
+    /**
+     * Search city
+     */
+    searchCity(searchCityName) {
+
+        if (searchCityName === '') {
+
+            /*Find weather and forecast by current geo position*/
+            this.props.getWeather(null);
+            this.props.getForecast(null);
+            return;
+        }
+
+        /*Find weather and forecast for specified city*/
+        this.props.getWeather(searchCityName);
+        this.props.getForecast(searchCityName);
+    }
 }
 
 
-App.propTypes = {};
-
-App.defaultProps = {};
+App.propTypes = {
+    /*From store*/
+    weatherObj: PropTypes.string,
+    forecastObj: PropTypes.string,
+    getWeather: PropTypes.func,
+    getForecast: PropTypes.func,
+};
 
 export default connect((state) => {
     return {
