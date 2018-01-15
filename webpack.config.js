@@ -57,7 +57,7 @@ let config = {
 if (NODE_ENV === "development") {
     config.plugins.push(new ExtractTextPlugin("../css/weather.css"));
 } else {
-    config.plugins.push(new ExtractTextPlugin("../css/weather.css"));
+    config.plugins.push(new ExtractTextPlugin("../css/weather.min.css"));
     config.plugins.push(new OptimizeCssAssetsPlugin({
         assetNameRegExp: /\.min.css$/g,
         cssProcessorOptions: {discardComments: {removeAll: true}},

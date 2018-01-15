@@ -9,7 +9,7 @@ export default function (store) {
 
             if (action.type === GET_FORECAST) {
 
-                let url = `http://api.openweathermap.org/data/2.5/forecast?APPID=650a122361b5457a1e5493f257f434c1&units=metric`;
+                let url = `https://api.openweathermap.org/data/2.5/forecast?APPID=650a122361b5457a1e5493f257f434c1&units=metric`;
 
                 /*Если поиск погоды по географическим координатам*/
                 if (action.payload.cityName === null) {
