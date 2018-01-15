@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import CityWeatherTable from "./CityWeatherTable";
 
 
 export default class CityWeather extends React.Component {

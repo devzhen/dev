@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from "react-redux";
-import {getForecast, getWeather} from "../redux/action_creaters";
+import {getWeatherAndForecast} from "../redux/action_creaters";
 import SearchCity from "./SearchCity";
 import CityWeather from "./CityWeather";
 import CityWeatherTable from "./CityWeatherTable";
@@ -14,11 +14,8 @@ class App extends React.Component {
     constructor(props) {
         super(props);
 
-        /*Получить текущие погодные условия*/
-        this.props.getWeather(null);
-
-        /*Получить прогноз на 5 дней*/
-        this.props.getForecast(null);
+        /*Get weather and 5 day forecast*/
+        this.props.getWeatherAndForecast(null);
 
         /*The function, that will be called when search city form will be submitted*/
         this.submitFunc = this.searchCity.bind(this);
@@ -118,15 +115,13 @@ class App extends React.Component {
 
         if (searchCityName === '') {
 
-            /*Find weather and forecast by current geo position*/
-            this.props.getWeather(null);
-            this.props.getForecast(null);
+            /*Get weather and 5 day forecast*/
+            this.props.getWeatherAndForecast(null);
             return;
         }
 
-        /*Find weather and forecast for specified city*/
-        this.props.getWeather(searchCityName);
-        this.props.getForecast(searchCityName);
+        /*Get weather and 5 day forecast*/
+        this.props.getWeatherAndForecast(searchCityName);
     }
 }
 
@@ -144,4 +139,4 @@ export default connect((state) => {
         weatherObj: state.weatherObj,
         forecastObj: state.forecastObj
     }
-}, {getWeather, getForecast})(App);
+}, {getWeatherAndForecast})(App);

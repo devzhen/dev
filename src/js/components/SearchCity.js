@@ -21,7 +21,8 @@ export default class SearchCity extends React.Component {
                 <form className="form-inline" onSubmit={this.submitHandler}>
                     <div className="form-group">
 
-                        <input type="text" className="form-control" name="search-city-name" placeholder="City name, country code"/>
+                        <input type="text" className="form-control" name="search-city-name"
+                               placeholder="City name, country code"/>
 
                     </div>
 

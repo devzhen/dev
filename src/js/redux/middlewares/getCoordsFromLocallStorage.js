@@ -9,7 +9,7 @@ export default function (store) {
 
             // If the local storage contains coords
             let {coords} = window.localStorage;
-            if(coords) {
+            if (coords) {
                 action.payload.userCoords = (JSON.parse(coords));
             }
 

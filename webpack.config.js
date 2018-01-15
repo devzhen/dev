@@ -14,7 +14,7 @@ let config = {
         // "babel-polyfill",
         "./src/js/index.js",
     ],
-    // devtool: ENV === "dev" ? "source-map" : false,
+    devtool: "source-map",
     output: {
         path: __dirname + "/dist/js",
         filename: NODE_ENV === "development" ? 'weather.js' : 'weather.min.js'
